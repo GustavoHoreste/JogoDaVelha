@@ -11,9 +11,49 @@ class Program
     Console.WriteLine();
     Menu();
 
-    char[,] matriz = OcuparMemoria();
+
+    Inserir(OcuparMemoria());
+    System.Console.WriteLine("\nBYEBYE");
+
+  }
+
+  static char[,] Inserir(char[,] matriz)
+  {
+    int i;
+
+    for (i = 0; i < 2; i++)
+    {
+      Console.Write("Informe a linha:");
+      int linha = int.Parse(Console.ReadLine());
+
+      Console.Write("Informe a coluna:");
+      int coluna = int.Parse(Console.ReadLine());
+
+      Console.Write("Insira X ou O:");
+      matriz[linha, coluna] = char.Parse(Console.ReadLine());
+
+      for (int k = 0; k < 3; k++)
+      {
+        for (int j = 0; j < 3; j++)
+        {
+          System.Console.WriteLine(matriz[linha, coluna]);
+        }
+      }
 
 
+      // ImpressaoTimeReal(ref matriz[linha, coluna]);
+
+    }
+
+    return matriz;
+  }
+
+  static void ImpressaoTimeReal(ref char matriz)
+  {
+    for (int i = 0; i < 9; i++)
+    {
+      Console.WriteLine(matriz);
+    }
 
   }
 
