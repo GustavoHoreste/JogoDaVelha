@@ -11,17 +11,63 @@ class Program
     Console.WriteLine();
     Menu();
 
-    Inserir(OcuparMemoria());
+    int v = VerificaJogo(Inserir(OcuparMemoria())); //mudar depois
+
+    if (v == 1)
+    {
+      Console.WriteLine("\n*******************jogador X ganhou*********************");
+    }
+    else if (v == 0)
+    {
+      Console.WriteLine("\n*******************jogador O ganhou*********************");
+    }
+    else if (v == 3)
+    {
+      Console.WriteLine("\n*******************EMPATE*********************");
+    }
+
+
+
 
     Console.WriteLine("\nBYEBYE");
 
+  }
+
+  static int VerificaJogo(char[,] matriz)
+  {
+    int v = 3;
+    if (matriz[0, 0] == 'X' && matriz[0, 1] == 'X' && matriz[0, 2] == 'X') return v = 1;           //linha 1 jogador 1
+    else if (matriz[0, 0] == 'O' && matriz[0, 1] == 'O' && matriz[0, 2] == 'O') return v = 0;          //linha 1 jogador 0
+
+    else if (matriz[1, 0] == 'X' && matriz[1, 1] == 'X' && matriz[1, 2] == 'X') return v = 1;         //linha 2 jogador 1						
+    else if (matriz[1, 0] == 'O' && matriz[1, 1] == 'O' && matriz[1, 2] == 'O') return v = 0;         //linha 2 jogador 0
+
+    else if (matriz[2, 0] == 'X' && matriz[2, 1] == 'X' && matriz[2, 2] == 'X') return v = 1;         //linha 3 jogador 1
+    else if (matriz[2, 0] == 'O' && matriz[2, 1] == 'O' && matriz[2, 2] == 'O') return v = 0;         //linha 3 jogador 0
+
+    else if (matriz[0, 0] == 'X' && matriz[1, 0] == 'X' && matriz[2, 0] == 'X') return v = 1;         //coluna 1 jogador 1
+    else if (matriz[0, 0] == 'O' && matriz[1, 0] == 'O' && matriz[2, 0] == 'O') return v = 0;         //coluna 1 jogador 0
+
+    else if (matriz[0, 1] == 'X' && matriz[1, 1] == 'X' && matriz[2, 1] == 'X') return v = 1;         //coluna 2 jogador 1
+    else if (matriz[0, 1] == 'O' && matriz[1, 1] == 'O' && matriz[2, 1] == 'O') return v = 0;         //coluna 2 jogador 0
+
+    else if (matriz[0, 2] == 'X' && matriz[1, 2] == 'X' && matriz[2, 2] == 'X') return v = 1;         //coluna 3 jogador 1
+    else if (matriz[0, 2] == 'O' && matriz[1, 2] == 'O' && matriz[2, 2] == 'O') return v = 0;         //coluna 3 jogador 0
+
+    else if (matriz[0, 0] == 'X' && matriz[1, 1] == 'X' && matriz[2, 2] == 'X') return v = 1;         //seta esquerda superios para direita inferior jogador 1
+    else if (matriz[0, 0] == 'O' && matriz[1, 1] == 'O' && matriz[2, 2] == 'O') return v = 0;         //seta esquerda superios para direita inferior jogador 0
+
+    else if (matriz[0, 2] == 'X' && matriz[1, 1] == 'X' && matriz[2, 0] == 'X') return v = 1;         //seta direita inferior para esquerda superior jogador 1
+    else if (matriz[0, 2] == 'X' && matriz[1, 1] == 'O' && matriz[2, 0] == 'O') return v = 0;         //seta direita inferior para esquerda superior jogador 0
+
+    return v;
   }
 
   static char[,] Inserir(char[,] matriz)
   {
     int i;
 
-    for (i = 0; i < 1; i++)
+    for (i = 0; i < 3; i++)
     {
       Console.Write("Informe a linha:");
       int linha = int.Parse(Console.ReadLine());
@@ -33,24 +79,31 @@ class Program
       matriz[linha, coluna] = char.Parse(Console.ReadLine());
 
 
-
-      // ImpressaoTimeReal(matriz[3, 3]);
+      ImpressaoTimeReal(ref matriz);
 
     }
 
     return matriz;
   }
 
-  static void ImpressaoTimeReal(char matriz)
+  static void ImpressaoTimeReal(ref char[,] matriz)
   {
 
-    for (int k = 0; k < 9; k++)
+    // var tamanhoMatriz = matriz.Length;
+
+    for (int i = 0; i < 3; i++)
     {
-      Console.WriteLine(matriz);
+      for (int j = 0; j < 3; j++)
+
+        Console.WriteLine(matriz[i, j]); //imprimir aqui depois como referencia
+
     }
+
+
 
     System.Console.WriteLine("Impressao comcluida");
     Thread.Sleep(2000);
+
   }
 
   static char[,] OcuparMemoria()
