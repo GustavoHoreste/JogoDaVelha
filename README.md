@@ -7,7 +7,7 @@
 ### Habilidades 
 
 - Logica de programação
-- Conceitos basicos de C#, não foi utilizados nenhum conceito de poo
+- Conceitos basicos de C#, não foi utilizado nenhum conceito de poo
 
 
 
